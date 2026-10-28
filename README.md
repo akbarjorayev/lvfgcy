@@ -7,7 +7,7 @@ A web app for a UK energy buyer who buys power on the day-ahead market. It answe
 
 Stack: React 19 + Vite + Recharts (front end), Python 3.12 + FastAPI (back end), Docker. Data comes from the Elexon BMRS API only: [FUELHH](https://bmrs.elexon.co.uk/api-documentation/endpoint/datasets/FUELHH/stream) (actuals, `fuelType = WIND`) and [WINDFOR](https://bmrs.elexon.co.uk/api-documentation/endpoint/datasets/WINDFOR/stream) (forecasts).
 
-Live app: **TODO: add Heroku link**
+Live app: **https://lvfgcy.vercel.app**
 
 ## How to run from scratch
 
@@ -42,15 +42,16 @@ cd backend && pytest                 # tests
 cd backend && python -m app.elexon   # download the data again from Elexon (about 1 minute)
 ```
 
-### Deploy to Heroku
+### Deploy to Vercel
 
-The repo has a `heroku.yml`, so Heroku builds the same Docker image:
+The live app runs on Vercel (free Hobby plan): the React app is served as static files and the FastAPI app runs as a Python function (`api/index.py`, settings in `vercel.json`).
 
 ```bash
-heroku create <app-name>
-heroku stack:set container
-git push heroku main
+npx vercel login
+npx vercel deploy --prod
 ```
+
+The repo also has a `heroku.yml`, so the same Docker image can be deployed to Heroku (`heroku stack:set container`, then `git push heroku main`).
 
 ## How the numbers are calculated
 
@@ -99,9 +100,12 @@ frontend/
     Stat.jsx       metric tile
     api.js         API calls
     format.js      number and date formatting
+api/index.py       Vercel entry point for the FastAPI app
+vercel.json        Vercel build and routing settings
+requirements.txt   Python packages for Vercel (same as backend/requirements.txt)
 Dockerfile         builds the React app, then a Python image that serves API + app
 docker-compose.yml local run with Docker
-heroku.yml         Heroku container deploy
+heroku.yml         Heroku container deploy (alternative)
 ```
 
 ## Use of AI tools
