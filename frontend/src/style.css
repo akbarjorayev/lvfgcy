@@ -1,0 +1,77 @@
+:root {
+  --bg: #f5f6f8;
+  --card: #ffffff;
+  --text: #1c2430;
+  --muted: #6b7684;
+  --border: #e1e5ea;
+  --grid: #eceff3;
+  --actual: #2563a8;
+  --forecast: #e07b1f;
+  --accent-bg: #fff4e8;
+  color-scheme: light dark;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #12161c;
+    --card: #1b2129;
+    --text: #e6e9ee;
+    --muted: #8f9aa8;
+    --border: #2c3440;
+    --grid: #252c36;
+    --actual: #6aa5e8;
+    --forecast: #f0a050;
+    --accent-bg: #2d2418;
+  }
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font: 15px/1.5 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+}
+
+.page { max-width: 1100px; margin: 0 auto; padding: 24px 16px 48px; }
+
+h1 { margin: 0 0 4px; font-size: 26px; }
+h2 { margin: 0 0 4px; font-size: 20px; }
+h3 { margin: 24px 0 0; font-size: 15px; }
+.lead { margin: 0; color: var(--muted); max-width: 760px; }
+.sub { margin: 0 0 16px; color: var(--muted); }
+.hint { margin: 4px 0 8px; color: var(--muted); font-size: 13px; }
+.error { color: #c0392b; }
+
+.controls {
+  display: flex; flex-wrap: wrap; gap: 16px 24px; align-items: flex-end;
+  margin: 20px 0;
+}
+.controls label { display: flex; flex-direction: column; gap: 4px; font-size: 13px; color: var(--muted); }
+.controls .hint { flex-basis: 100%; margin: 0; }
+.row { display: flex; gap: 4px; }
+
+input, button {
+  font: inherit; color: var(--text); background: var(--card);
+  border: 1px solid var(--border); border-radius: 6px; padding: 6px 10px;
+}
+button { cursor: pointer; min-width: 36px; }
+button:disabled { opacity: 0.4; cursor: default; }
+
+.card {
+  background: var(--card); border: 1px solid var(--border); border-radius: 10px;
+  padding: 20px; margin-bottom: 20px;
+}
+
+.stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(160px, 100%), 1fr)); gap: 12px; margin-bottom: 16px; }
+.stat { border: 1px solid var(--border); border-radius: 8px; padding: 10px 12px; }
+.stat-label { font-size: 13px; color: var(--muted); }
+.stat-value { font-size: 22px; font-weight: 600; }
+.stat-note { font-size: 12px; color: var(--muted); }
+
+.callout { background: var(--accent-bg); border-radius: 8px; padding: 12px 14px; }
+
+.grid2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(320px, 100%), 1fr)); gap: 16px; }
+
+footer { color: var(--muted); font-size: 13px; }
